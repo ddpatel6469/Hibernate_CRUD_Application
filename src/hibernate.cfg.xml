@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+   
+     	<property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+     	<property name="hbm2ddl.auto">update</property>
+     	<property name="hibernate.show_sql">true</property>
+     	<property name = "hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+     	<!-- Assume test is the database name -->
+     	<property name = "hibernate.connection.url">jdbc:mysql://localhost/feb2019</property>
+     	<property name = "hibernate.connection.username">root</property>
+     	<property name = "hibernate.connection.password">root</property>
+
+		<!-- EhCache is plugged in to the hibernate.cfg.xml -->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+	  	
+	  	<!-- enable second level cache and query cache -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<property name="net.sf.ehcache.configurationResourceName">ehCache.xml</property>
+	  	
+
+      	<!-- List of XML mapping files -->
+      	<mapping resource = "customer.hbm.xml"/>      
+      	<!--mapping class = "com.marlabs.session.examples.withannotations.NewCustomer"/-->
+      	<mapping class = "com.marlabs.cacheexamples.CustomerCache"/>
+      	
+      	<mapping class = "com.marlabs.hql.Employee"/>
+      
+   </session-factory>
+</hibernate-configuration>
